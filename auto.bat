@@ -1,41 +1,26 @@
-echo OFF
+@echo off
 
-echo Install Chocolatey 
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-choco upgrade chocolatey -y
+powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+choco feature enable -n=allowGlobalConfirmation
+pause
 
-echo Git
-choco install git -y
+:: 항상 자동으로 yes를 선택하도록 설정
+choco feature enable --name=allowGlobalConfirmation
 
-echo JDK 
-choco install oraclejdk -y
+:: 먼저 기존 패키지 업데이트
+choco upgrade all -y
 
-echo Eclipse
+:: 사용할 어플리케이션 설치
+choco install git.install -y --params "/GitAndUnixToolsOnPath /WindowsTerminal /WindowsTerminalProfile /NoGuiHereIntegration"
+git config --global color.ui auto
+choco install oracle17jdk
 choco install eclipse -y
-
-echo Eclipse IDE for Java Developers
 choco install eclipse-java-oxygen -y
-
-echo Android Studio
 choco install androidstudio -y
-
-echo Python
 choco install python -y
-
-echo VMware
 choco install vmware-workstation-player -y
-
-echo Visual Studio Code
 choco install vscode -y
-
-echo Visual Studio 2019
 choco install visualstudio2019community -y
-
-echo Visual Studio 2022
 choco install visualstudio2022community -y
 
-echo ███████ ██ ███    ██ ██ ███████ ██   ██
-echo ██      ██ ████   ██ ██ ██      ██   ██ 
-echo █████   ██ ██ ██  ██ ██ ███████ ███████
-echo ██      ██ ██  ██ ██ ██      ██ ██   ██
-echo ██      ██ ██   ████ ██ ███████ ██   ██
+:END
