@@ -14,13 +14,13 @@ choco upgrade all -y
 choco install git.install -y --params "/GitAndUnixToolsOnPath /WindowsTerminal /WindowsTerminalProfile /NoGuiHereIntegration"
 git config --global color.ui auto
 choco install oracle17jdk
-choco install eclipse -y
-choco install eclipse-java-oxygen -y
-choco install androidstudio -y
-choco install python -y
-choco install vmware-workstation-player -y
-choco install vscode -y
-choco install visualstudio2019community -y
-choco install visualstudio2022community -y
+choco install eclipse
+choco install eclipse-java-oxygen
+choco install androidstudio
+choco install python
+choco install vmware-workstation-player
+choco install vscode
+choco install visualstudio2019community
+choco install visualstudio2022community
 
 :END
